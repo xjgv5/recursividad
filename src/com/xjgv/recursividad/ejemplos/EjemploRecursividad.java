@@ -2,6 +2,8 @@ package com.xjgv.recursividad.ejemplos;
 
 import com.xjgv.recursividad.ejemplos.models.Componente;
 
+import java.util.stream.Stream;
+
 public class EjemploRecursividad {
     public static void main(String[] args) {
         Componente pc = new Componente("Gabinete PC ATX");
@@ -36,7 +38,19 @@ public class EjemploRecursividad {
                 .addComponente(new Componente("Teclado"))
                 .addComponente(new Componente("Mosue"));
 
+        metodoRecursivo(pc, 0 );
 
 
+
+    }
+
+
+    public static void metodoRecursivo(Componente componente, int nivel){
+        System.out.println("\t".repeat(nivel) + componente.getNombre());
+        if (componente.tieneHijos()){
+            for (Componente hijo: componente.getHijos()){
+                metodoRecursivo(hijo, nivel + 1);
+            }
+        }
     }
 }
